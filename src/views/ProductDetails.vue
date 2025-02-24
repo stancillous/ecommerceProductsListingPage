@@ -67,7 +67,7 @@ const product = ref(null); /**holds  currently shown product's dets */
 const loading = ref(false); /**state to show loading overlay */
 
 const axiosInstance = axios.create({
-    baseURL: 'http://localhost:8000/api/v1',
+    baseURL: 'https://stanceraymond.pythonanywhere.com/api/v1',
     headers: {
         'Content-Type': 'application/json',
     },
