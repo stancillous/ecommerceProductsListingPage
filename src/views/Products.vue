@@ -92,7 +92,7 @@ const filteredProducts = computed(() => {
 });
 
 const axiosInstance = axios.create({
-    baseURL: 'http://localhost:8000/api/v1',
+    baseURL: 'https://stanceraymond.pythonanywhere.com/api/v1',
     headers: {
         'Content-Type': 'application/json',
     },
