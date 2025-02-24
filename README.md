@@ -1,33 +1,190 @@
-# courier
+# E-commerce Application Documentation 🛍️
 
-This template should help get you started developing with Vue 3 in Vite.
+This repository contains both the backend and frontend components of an e-commerce application. The backend is built with Django REST Framework, while the frontend utilizes Vue.js with TypeScript.
 
-## Recommended IDE Setup
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Table of Contents
+- [Backend Architecture](#backend-architecture)
+- [Frontend Architecture](#frontend-architecture)
+- [State Management](#state-management)
+- [User Interface](#user-interface)
+- [Development Guidelines](#development-guidelines)
 
-## Type Support for `.vue` Imports in TS
+## Backend Architecture
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+### Technology Stack 🔧
+- Django
+- MySQL (default database)
 
-## Customize configuration
+### Data Models 📝
 
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
+#### Product Model
+```python
+class Product:
+    name: str                   # max 40 characters
+    price: int                  # positive integer
+    description: str            # text field with default
+    quantity_in_stock: int      # positive integer, default 0
+    rating: int                 # 1-5 scale
+    image: str                  # image URL/data
+    slug: str                   # auto-generated from name
 ```
 
-### Compile and Hot-Reload for Development
+### Key Features ⭐
+- Automatic slug generation for SEO-friendly URLs (not done to completion)
+- RESTful API endpoints
 
-```sh
+## Frontend Architecture
+
+### Technology Stack 🔧
+- Vue.js 3
+- TypeScript
+- Vue Router
+- Pinia (State Management)
+- SCSS
+
+### Project Structure 📁
+```
+src/
+├── assets/         # Static assets
+├── components/     # Reusable Vue components
+├── router/         # Route definitions
+├── state/         # Pinia stores
+└── views/         # Page components
+```
+
+## State Management 🔄
+
+### Products Store
+```typescript
+// State
+userCart: CartItem[]    // Stores cart items
+name: string           // User name
+
+// Actions
+addProductToCart()     // Add/update cart items
+clearCart()           // Reset cart state
+
+// Getters
+cartTotal             // Calculate total cart value
+```
+
+### Data Flow
+1. User interactions trigger actions
+2. Actions modify state
+3. Components react to state changes
+4. UI updates automatically
+
+## User Interface 🎨
+
+### Navigation
+- Responsive header with logo
+- Main navigation menu
+- Dynamic routing system
+
+### Key Components
+- Product listings
+- Product details
+  
+### Design Features
+- Mobile-first approach
+- Flexbox layout system
+- Bootstrap utility classes
+- Custom SCSS styling
+
+## Development Guidelines 📚
+
+### Environment Configuration 🔐
+
+1. Backend Environment Setup
+Create a `.env` file in the root directory of the backend project:
+```env
+# Django Settings
+DEBUG=True
+SECRET_KEY=your_secret_key_here
+ALLOWED_HOSTS=localhost,127.0.0.1
+
+# Database Configuration (if using custom database)
+DB_NAME=your_db_name
+DB_USER=your_db_user
+DB_PASSWORD=your_db_password
+DB_HOST=your_db_host
+DB_PORT=your_db_port
+
+# CORS Settings
+CORS_ALLOWED_ORIGINS=['http://localhost:5173']
+
+# Static Files
+STATIC_URL=/static/
+MEDIA_URL=/media/
+```
+
+
+⚠️ Important Notes:
+- Never commit `.env` files to version control
+- Make sure to add `.env` to your `.gitignore` file
+
+### Setting Up Development Environment
+
+1. Backend Setup
+```bash
+# Create virtual environment
+python -m venv env
+source env/bin/activate  # Linux/Mac
+.\env\Scripts\activate   # Windows
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run migrations
+python manage.py migrate
+
+# Start server
+python manage.py runserver
+```
+
+2. Frontend Setup
+```bash
+# Install dependencies
+cd frontend
+npm install
+
+# Start development server
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+### Best Practices 🎯
 
-```sh
-npm run build
-```
+#### Backend
+- Follow Django's conventions
+- Write docstrings for complex functions
+
+#### Frontend
+- Use TypeScript for type safety
+- Implement component-based architecture
+- Follow Vue.js composition API patterns
+- Maintain centralized state management
+
+### Code Style 📝
+- Use consistent indentation
+- Follow naming conventions
+- Write clear comments
+- Keep components focused and reusable
+
+## API Integration 🔌
+
+### Available Endpoints
+- GET /api/v1/products/ - List all products
+- - GET /api/v1/products/{id}/ - Get single product by the id
+- GET /api/v1/products/{slug}/ - Get single product (wasn't completely implemented)
+
+
+## Contributing 🤝
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
+
+## License 📄
+[MIT License](LICENSE)
