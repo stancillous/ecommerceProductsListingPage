@@ -1,0 +1,67 @@
+@import './base.css';
+
+.container{
+  max-width: 1400px;
+  margin: auto;
+}
+
+button{
+  border-radius: 1px !important;
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+}
+button:hover{
+  opacity: .8;
+}
+
+a{
+  color: orange !important;
+}
+
+.btn-outline-secondary{
+  border-color: orange !important;
+}
+.btn-secondary{
+  background-color: orange !important;
+  border-color: orange !important;
+  color: black !important;
+}
+.btn-outline-primary{
+  border-color: orange !important;
+  color: black;
+}
+.btn-primary{
+  background-color: orange !important;
+  border-color: orange !important;
+  color: black !important;
+}
+
+.text-orange{
+  color: orange !important;
+}
+
+.form-label, label{
+  font-size: 13px !important;
+}
+
+.form-select {
+  font-size: 13px !important;
+}
+.form-select option {
+  font-size: 13px !important;
+}
+input{
+  font-size: 14px !important;
+  padding: 10px !important;
+  margin-right: 10px !important;
+}
+.form-control{
+  font-size: 14px !important;
+  padding: 10px !important;
+  margin-right: 10px !important;
+  resize: none;
+}
+.text-orange{
+  color: orange !important;
+  opacity: .8;
+}
